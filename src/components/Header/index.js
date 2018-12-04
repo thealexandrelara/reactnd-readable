@@ -1,7 +1,15 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Content } from './styles';
+import Menu from './Menu';
 
-const Header = () => <Container>Header</Container>;
+const Header = () => (
+  <Container>
+    <Content>
+      <Menu />
+      <div>Search input</div>
+    </Content>
+  </Container>
+);
 
 export default Header;

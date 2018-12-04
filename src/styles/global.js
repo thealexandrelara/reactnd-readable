@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     background: #fefeff;
+    font-family: "verdana, arial, helvetica, sans-serif";
   }
   input, button {
   }
