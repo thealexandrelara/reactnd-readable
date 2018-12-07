@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Container, Content, Sidebar } from './styles/components';
+import { Container, Content, Sidebar, HeaderContentBackground } from './styles/components';
 import GlobalStyles from './styles/global';
 
 import './styles/App.css';
@@ -15,8 +15,9 @@ const App = () => (
 
     <BrowserRouter>
       <Container>
-        <Sidebar />
+        {/* <Sidebar /> */}
         {/* <Header /> */}
+        <HeaderContentBackground></HeaderContentBackground>
         <Content>
           <Routes />
         </Content>
