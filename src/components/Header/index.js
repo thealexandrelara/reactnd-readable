@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { Container, Content } from './styles';
-import Menu from './Menu';
+import { Container, LogoContainer, NavMenu } from './styles';
+import Logo from '../../assets/images/logo.png';
 
 const Header = () => (
   <Container>
-    <Content>
-      <Menu />
-      <div>Search input</div>
-    </Content>
+    <LogoContainer src={Logo} alt="Logo" />
+    <NavMenu />
   </Container>
 );
 

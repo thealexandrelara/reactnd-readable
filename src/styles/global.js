@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -8,13 +8,13 @@ const GlobalStyles = createGlobalStyle`
     outline: 0;
   }
   html, body, #root {
+    background-color: #323d64;
     height: 100%;
   }
   body {
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    background: #fefeff;
-    font-family: "verdana, arial, helvetica, sans-serif";
+    font-family: 'Montserrat', sans-serif;
   }
   input, button {
   }

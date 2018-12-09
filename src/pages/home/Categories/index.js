@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Container, Menu } from './styles';
 
-class NavMenu extends Component {
+class Categories extends Component {
   state = {
     current: 'react'
   };
@@ -23,12 +23,13 @@ class NavMenu extends Component {
           mode="horizontal"
           style={{ border: 'none', fontSize: 12, fontWeight: 'bold' }}
         >
-          <Menu.Item key="react">Home</Menu.Item>
-          <Menu.Item key="redux">Create New Post</Menu.Item>
+          <Menu.Item key="react">REACT</Menu.Item>
+          <Menu.Item key="redux">REDUX</Menu.Item>
+          <Menu.Item key="udacity">UDACITY</Menu.Item>
         </Menu>
       </Container>
     );
   }
 }
 
-export default NavMenu;
+export default Categories;

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
+import { default as UnstyledNavMenu } from './Menu';
 
 export const Container = styled.header`
   display: grid;
-  grid-template-columns: 1fr 960px 1fr;
-  grid-template-rows: max-content;
-  background-color: white;
-  align-items: center;
+  grid-template-columns: 10rem max-content;
+  grid-column-gap: 64px;
+  align-content: center;
 `;
 
-export const Content = styled.header`
-  display: grid;
-  grid-template-columns: max-content max-content;
-  align-items: end;
-  grid-column: 2;
+export const LogoContainer = styled.img`
+  align-self: center;
+  max-width: 10rem;
 `;
+
+export const NavMenu = styled(UnstyledNavMenu)``;

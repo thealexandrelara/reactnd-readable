@@ -1,11 +1,18 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { Container, Content, Sidebar, HeaderContentBackground } from './styles/components';
+import {
+  Container,
+  Content,
+  FooterContainer,
+  HeaderContentBackground,
+  HeaderContainer
+} from './styles/components';
 import GlobalStyles from './styles/global';
 
 import './styles/App.css';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import Routes from './routes/routes';
 
@@ -17,10 +24,16 @@ const App = () => (
       <Container>
         {/* <Sidebar /> */}
         {/* <Header /> */}
-        <HeaderContentBackground></HeaderContentBackground>
+        <HeaderContentBackground />
+        <HeaderContainer>
+          <Header />
+        </HeaderContainer>
         <Content>
           <Routes />
         </Content>
+        <FooterContainer>
+          <Footer />
+        </FooterContainer>
       </Container>
     </BrowserRouter>
   </Fragment>
