@@ -4,9 +4,10 @@
     "browser": true,
     "jest": true
   },
-  "plugins": ["react", "jsx-a11y", "import"],
+  "plugins": ["react", "jsx-a11y", "import", "prettier"],
   "extends": "airbnb",
   "rules": {
+    "prettier/prettier": "error",
     "react/jsx-filename-extension": [
       "error",
       {
@@ -16,6 +17,7 @@
     "global-require": "off",
     "import/prefer-default-export": "off",
     "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
-    "arrow-parens": [2, "as-needed"]
+    "arrow-parens": [2, "as-needed"],
+    "implicit-arrow-linebreak": "off"
   }
 }
