@@ -12,17 +12,24 @@ export const Menu = styled(UnstyledMenu)`
     &.ant-menu-item {
       color: #8794c5;
       border: none;
+      a {
+        color: #8794c5;
+      }
     }
 
     &.ant-menu-item:hover {
-      color: white;
       border-color: white;
       border: none;
+      a {
+        color: white;
+      }
     }
 
     &.ant-menu-item-selected {
-      color: white;
       border: none;
+      a {
+        color: white;
+      }
     }
   }
 `;

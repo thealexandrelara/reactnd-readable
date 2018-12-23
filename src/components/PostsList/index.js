@@ -30,7 +30,7 @@ class PostsList extends PureComponent {
     return (
       <Container>
         <Filters />
-        {posts && posts.map(post => <Post {...post} />)}
+        {posts && posts.map(post => <Post key={post.id} {...post} />)}
       </Container>
     );
   }

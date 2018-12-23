@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Divider as UnstyledDivider } from 'antd';
 
 import { default as UnstyledFooter } from './Footer';
-import { default as UnstyledVotes } from './Votes';
+import { default as UnstyledVotes } from '../Votes';
 import { default as UnstyledComments } from './Comments';
 
 export const Container = styled.article`
@@ -58,18 +58,19 @@ export const Body = styled.p`
   margin-top: 16px;
   font-size: 14px;
   grid-row: 4;
+  grid-column: 3 / 4;
+`;
+
+export const Divider = styled(UnstyledDivider)`
+  grid-row: 5;
   grid-column: 2 / 4;
+  padding: 0 16px;
 `;
 
 export const Votes = styled(UnstyledVotes)`
   grid-column: 1;
   grid-row: span 3;
   align-self: center;
-`;
-
-export const Divider = styled(UnstyledDivider)`
-  grid-column: span 3;
-  padding: 0 16px;
 `;
 
 export const Comments = styled(UnstyledComments)`

@@ -1,6 +1,9 @@
-import React, { Fragment } from 'react';
-import { Provider } from 'react-redux';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
+
+import { Creators as CategoriesActions } from './store/ducks/categories';
 
 import {
   Container,
@@ -15,32 +18,51 @@ import './styles/App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import store from './store';
 import Routes from './routes/routes';
 
-const App = () => (
-  <Fragment>
-    <GlobalStyles />
+class App extends Component {
+  componentDidMount() {
+    const { retrieveCategoriesRequest } = this.props;
+    retrieveCategoriesRequest();
+  }
 
-    <Provider store={store}>
-      <BrowserRouter>
-        <Container>
-          {/* <Sidebar /> */}
-          {/* <Header /> */}
-          <HeaderContentBackground />
-          <HeaderContainer>
-            <Header />
-          </HeaderContainer>
-          <Content>
-            <Routes />
-          </Content>
-          <FooterContainer>
-            <Footer />
-          </FooterContainer>
-        </Container>
-      </BrowserRouter>
-    </Provider>
-  </Fragment>
-);
+  render() {
+    return (
+      <Fragment>
+        <GlobalStyles />
+        <BrowserRouter>
+          <Container>
+            {/* <Sidebar /> */}
+            {/* <Header /> */}
+            <HeaderContentBackground />
+            <HeaderContainer>
+              <Header />
+            </HeaderContainer>
+            <Content>
+              <Routes />
+            </Content>
+            <FooterContainer>
+              <Footer />
+            </FooterContainer>
+          </Container>
+        </BrowserRouter>
+      </Fragment>
+    );
+  }
+}
+const mapStateToProps = state => {
+  console.log('categories: ', state.categories.data);
 
-export default App;
+  return {
+    categories: state.categories.data,
+    loadingCategories: state.categories.loading,
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CategoriesActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

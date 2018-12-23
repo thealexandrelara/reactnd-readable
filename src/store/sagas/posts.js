@@ -28,3 +28,42 @@ export function* retrievePosts(action) {
     // ),
   }
 }
+
+export function* retrieveSinglePost(action) {
+  const { id, category } = action.payload;
+
+  try {
+    const response = yield call(api.get, `/posts/${id}`);
+    console.log(normalize(response.data, post));
+
+    yield put(
+      PostsActions.retrieveSinglePostSuccess(
+        normalize(response.data, post),
+        category,
+      ),
+    );
+  } catch (err) {
+    yield put();
+    // PostsActions.retrieveSinglePostError(
+    //   'An error has occurred. Please, refresh the page.',
+    // ),
+  }
+}
+
+export function* voteInPost(action) {
+  const { postId, option } = action.payload;
+
+  try {
+    const response = yield call(api.post, `/posts/${postId}`, { option });
+    console.log(normalize(response.data, post));
+
+    yield put(
+      PostsActions.voteInPostSuccess(normalize(response.data, post), postId),
+    );
+  } catch (err) {
+    yield put();
+    // PostsActions.retrieveSinglePostError(
+    //   'An error has occurred. Please, refresh the page.',
+    // ),
+  }
+}

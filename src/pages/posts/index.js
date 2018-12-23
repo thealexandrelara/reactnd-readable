@@ -4,21 +4,15 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as PostsActions } from '../../store/ducks/posts';
-import { Creators as CategoriesActions } from '../../store/ducks/categories';
 
 import { Container } from './styles';
 
 import { getCategoryFromUrlPath } from '../../utils/categories';
 
-import Categories from './Categories';
+import Categories from '../../components/Categories';
 import PostsList from '../../components/PostsList';
 
 class Posts extends PureComponent {
-  componentDidMount() {
-    const { retrieveCategoriesRequest } = this.props;
-    retrieveCategoriesRequest();
-  }
-
   render() {
     const { loadingCategories, categories, match } = this.props;
     const currentCategory = getCategoryFromUrlPath(match);
@@ -50,7 +44,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...CategoriesActions, ...PostsActions }, dispatch);
+  bindActionCreators(PostsActions, dispatch);
 
 export default withRouter(
   connect(

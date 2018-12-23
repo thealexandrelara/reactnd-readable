@@ -6,12 +6,7 @@ const listsByCategory = (state = { all: [] }, action) => {
     case Types.RETRIEVE_POSTS_SUCCESS:
       return {
         ...state,
-        [action.payload.category]: action.payload.response.result,
-      };
-    case Types.ADD_POST_SUCCESS:
-      return {
-        ...state,
-        [action.payload.category]: action.payload.response.result,
+        [action.payload.category]: action.payload.data.result,
       };
     default:
       return state;

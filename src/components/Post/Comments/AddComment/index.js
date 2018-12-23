@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Creators as CommentsActions } from '../../../../store/ducks/comments';
+
 import {
   Container,
   Card,
@@ -17,7 +21,7 @@ class AddComment extends React.Component {
       author: {
         value: 'Udacity',
       },
-      message: {
+      body: {
         value: '',
       },
     },
@@ -29,13 +33,41 @@ class AddComment extends React.Component {
     }));
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const { form } = this;
+    const { postId, addCommentRequest } = this.props;
+    form.validateFields((err, values) => {
+      if (!err) {
+        addCommentRequest(values, postId);
+      }
+    });
+  };
+
+  saveFormRef = form => {
+    this.form = form;
+  };
+
   render() {
     const { fields } = this.state;
     return (
       <Container>
-        <Form {...fields} onChange={this.handleFormChange} />
+        <Form
+          {...fields}
+          onChange={this.handleFormChange}
+          onSubmit={this.handleSubmit}
+          ref={this.saveFormRef}
+        />
       </Container>
     );
   }
 }
-export default AddComment;
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CommentsActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(AddComment);

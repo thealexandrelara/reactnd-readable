@@ -3,6 +3,10 @@ import { Form, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
+function hasErrors(fieldsError) {
+  return Object.keys(fieldsError).some(field => fieldsError[field]);
+}
+
 const AddCommentForm = Form.create({
   onFieldsChange(props, changedFields) {
     props.onChange(changedFields);
@@ -13,26 +17,27 @@ const AddCommentForm = Form.create({
         ...props.author,
         value: props.author.value,
       }),
-      message: Form.createFormField({
-        ...props.message,
-        value: props.message.value,
+      body: Form.createFormField({
+        ...props.body,
+        value: props.body.value,
       }),
     };
   },
   onValuesChange(_, values) {
-    console.log(values);
+    // console.log(values);
   },
 })(props => {
-  const { getFieldDecorator } = props.form;
+  const { onSubmit } = props;
+  const { getFieldDecorator, getFieldsError } = props.form;
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <FormItem label="Author">
         {getFieldDecorator('author', {
           rules: [{ required: true, message: 'Author is required!' }],
         })(<Input />)}
       </FormItem>
       <FormItem label="Message">
-        {getFieldDecorator('message', {
+        {getFieldDecorator('body', {
           rules: [{ required: true, message: 'Message is required!' }],
         })(<Input.TextArea rows={4} />)}
       </FormItem>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Divider as UnstyledDivider } from 'antd';
-import { default as UnstyledVotes } from './Votes';
+import { default as UnstyledVotes } from '../../../Votes';
 
 export const Container = styled.article`
   display: grid;

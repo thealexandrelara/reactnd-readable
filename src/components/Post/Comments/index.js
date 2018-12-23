@@ -5,22 +5,16 @@ import { Container } from './styles';
 import AddComment from './AddComment';
 import Comment from './Comment';
 
-const Comments = ({ ...rest }) => (
+const Comments = ({ comments, postId, ...rest }) => (
   <Container {...rest}>
-    <AddComment />
+    <AddComment postId={postId} />
     <Timeline>
-      <Timeline.Item>
-        <Comment />
-      </Timeline.Item>
-      <Timeline.Item>
-        <Comment />
-      </Timeline.Item>
-      <Timeline.Item>
-        <Comment />
-      </Timeline.Item>
-      <Timeline.Item>
-        <Comment />
-      </Timeline.Item>
+      {comments &&
+        comments.map(comment => (
+          <Timeline.Item key={comment.id}>
+            <Comment {...comment} />
+          </Timeline.Item>
+        ))}
     </Timeline>
   </Container>
 );
