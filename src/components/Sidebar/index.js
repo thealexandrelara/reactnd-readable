@@ -1,9 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 
-import {
-  Container, Menu, MenuButton, styles,
-} from './styles';
+import { Container, Menu, MenuButton, styles } from './styles';
 
 class Sidebar extends React.Component {
   state = {

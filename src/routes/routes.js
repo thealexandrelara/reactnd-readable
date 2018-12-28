@@ -8,8 +8,8 @@ import PostDetail from '../pages/postDetail';
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Posts} />
-    <Route exact path="/category/:categoryId/:postId" component={PostDetail} />
-    <Route path="/category/:categoryId" component={Posts} />
+    <Route exact path="/:categoryId/:postId" component={PostDetail} />
+    <Route path="/:categoryId" component={Posts} />
   </Switch>
 );
 

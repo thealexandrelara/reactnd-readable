@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Select as UnstyledSelect, Input } from 'antd';
 
+const { Search } = Input;
+
 export const Container = styled.div`
   display: grid;
   align-content: center;
@@ -20,7 +22,7 @@ export const Select = styled(UnstyledSelect)`
   }
 `;
 
-export const SearchInput = styled(Input.Search)`
+export const SearchInput = styled(Search)`
   .ant-input {
     background-color: transparent;
     border-color: #8794c5;

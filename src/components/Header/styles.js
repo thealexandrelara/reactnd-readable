@@ -6,6 +6,7 @@ export const Container = styled.header`
   grid-template-columns: 10rem max-content;
   grid-column-gap: 64px;
   align-content: center;
+  padding: 0 16px;
 `;
 
 export const LogoContainer = styled.img`

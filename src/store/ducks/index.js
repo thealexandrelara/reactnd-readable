@@ -8,8 +8,14 @@ export default combineReducers({ posts, comments, categories });
 
 export const Selectors = {
   posts: {
-    getVisiblePosts: (state, category) =>
-      PostsSelectors.getVisiblePosts(state.posts, category),
+    getVisiblePosts: (state, category, sortBy, orderBy, searchTerm) =>
+      PostsSelectors.getVisiblePosts(
+        state.posts,
+        category,
+        sortBy,
+        orderBy,
+        searchTerm,
+      ),
     getSinglePost: (state, id) => PostsSelectors.getSinglePost(state.posts, id),
     getIsFetching: state => PostsSelectors.getIsFetching(state.posts),
   },

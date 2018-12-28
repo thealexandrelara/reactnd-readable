@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -7,22 +8,51 @@ import { Creators as PostsActions } from '../../store/ducks/posts';
 import { Creators as CommentsActions } from '../../store/ducks/comments';
 import { Selectors } from '../../store/ducks';
 
-import { Container } from './styles';
+import { Container, LoadingContainer } from './styles';
 
 import { getCategoryFromUrlPath } from '../../utils/categories';
 
 import Categories from '../../components/Categories';
 import Post from '../../components/Post';
+import NotFound from '../../components/404NotFound';
+import Loading from '../../components/Loading';
 
 class PostDetail extends PureComponent {
+  static propTypes = {
+    retrieveSinglePostRequest: PropTypes.func.isRequired,
+    retrieveCommentsRequest: PropTypes.func.isRequired,
+    loadingCategories: PropTypes.bool.isRequired,
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        path: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+    post: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+    }),
+    postComments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        author: PropTypes.string.isRequired,
+        body: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+  };
+
+  static defaultProps = {
+    post: undefined,
+  };
+
   componentDidMount() {
     const {
       retrieveSinglePostRequest,
       retrieveCommentsRequest,
       match,
     } = this.props;
-
-    console.log(match);
 
     retrieveSinglePostRequest(match.params.postId, match.params.categoryId);
     retrieveCommentsRequest(match.params.postId);
@@ -40,16 +70,20 @@ class PostDetail extends PureComponent {
 
     if (loadingCategories || !categories) {
       return (
-        <Container>
-          <div>Loading...</div>
-        </Container>
+        <LoadingContainer>
+          <Loading />
+        </LoadingContainer>
       );
     }
 
     return (
       <Container>
         <Categories categories={categories} currentCategory={currentCategory} />
-        {post && <Post {...post} comments={postComments} isSingle />}
+        {post ? (
+          <Post {...post} comments={postComments} isSingle />
+        ) : (
+          <NotFound />
+        )}
       </Container>
     );
   }
@@ -57,12 +91,15 @@ class PostDetail extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   const { match } = ownProps;
-  console.log('postDetailState: ', state);
+
+  let singlePost = Selectors.posts.getSinglePost(state, match.params.postId);
+
+  if (singlePost) {
+    singlePost = !singlePost.deleted ? singlePost : undefined;
+  }
 
   return {
-    post: match.params.postId
-      ? Selectors.posts.getSinglePost(state, match.params.postId)
-      : undefined,
+    post: match.params.postId ? singlePost : undefined,
     postComments: match.params.postId
       ? Selectors.comments.getVisibleComments(state, match.params.postId)
       : undefined,

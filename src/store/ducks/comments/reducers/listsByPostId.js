@@ -16,6 +16,13 @@ const listsByPostId = (state = {}, action) => {
           action.payload.data.result,
         ],
       };
+    case Types.DELETE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        [action.payload.postId]: state[action.payload.postId].filter(
+          commentId => action.payload.data.result !== commentId,
+        ),
+      };
     default:
       return state;
   }

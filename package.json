@@ -5,9 +5,13 @@
   "dependencies": {
     "antd": "^3.10.7",
     "axios": "^0.18.0",
+    "fuse.js": "^3.3.0",
+    "lodash": "^4.17.11",
     "normalizr": "^3.3.0",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-lottie": "^1.2.3",
     "react-moment": "^0.8.4",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",

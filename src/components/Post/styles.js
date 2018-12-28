@@ -4,6 +4,7 @@ import { Divider as UnstyledDivider } from 'antd';
 import { default as UnstyledFooter } from './Footer';
 import { default as UnstyledVotes } from '../Votes';
 import { default as UnstyledComments } from './Comments';
+import { default as UnstyledEditPost } from './EditPost';
 
 export const Container = styled.article`
   display: grid;
@@ -27,6 +28,7 @@ export const Image = styled.img`
   align-self: center;
   grid-row: span 3;
   grid-column: 2;
+  border: 2px dashed #00d7ff;
   border-radius: 5px;
   height: 120px;
 `;
@@ -75,4 +77,9 @@ export const Votes = styled(UnstyledVotes)`
 
 export const Comments = styled(UnstyledComments)`
   grid-column: 2 / 4;
+`;
+
+export const EditPost = styled(UnstyledEditPost)`
+  grid-row: 2 / 5;
+  grid-column: 3 / 4;
 `;

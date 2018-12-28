@@ -8,12 +8,24 @@ const listsByCategory = (state = { all: [] }, action) => {
         ...state,
         [action.payload.category]: action.payload.data.result,
       };
+    case Types.ADD_POST_SUCCESS:
+      return {
+        ...state,
+        all: [...state.all, action.payload.data.result],
+        [action.payload.category]: [
+          ...(state[action.payload.category]
+            ? state[action.payload.category]
+            : []),
+          action.payload.data.result,
+        ],
+      };
     default:
       return state;
   }
 };
 
 const isFetching = (state = false, action) => {
+  console.log('ISFETCHING');
   switch (action.type) {
     case Types.RETRIEVE_POSTS_ERROR:
     case Types.RETRIEVE_POSTS_SUCCESS:

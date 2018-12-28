@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Timeline } from 'antd';
 
 import { Container } from './styles';
@@ -18,5 +19,20 @@ const Comments = ({ comments, postId, ...rest }) => (
     </Timeline>
   </Container>
 );
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      timestamp: PropTypes.number.isRequired,
+    }),
+  ),
+};
+
+Comments.defaultProps = {
+  comments: [],
+};
 
 export default Comments;

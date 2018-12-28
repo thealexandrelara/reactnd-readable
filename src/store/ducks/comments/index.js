@@ -19,6 +19,7 @@ export const Selectors = {
     return ids
       ? ids
           .map(id => byIdSelectors.getSingleComment(state.byId, id))
+          .filter(comment => !comment.parentDeleted && !comment.deleted)
           .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
       : [];
   },
@@ -75,6 +76,30 @@ export const Creators = {
   }),
   addCommentError: error => ({
     type: Types.ADD_COMMENT_ERROR,
+    payload: { error },
+  }),
+  editCommentRequest: (params, commentId, postId) => ({
+    type: Types.EDIT_COMMENT_REQUEST,
+    payload: { ...params, commentId, postId },
+  }),
+  editCommentSuccess: (data, postId) => ({
+    type: Types.EDIT_COMMENT_SUCCESS,
+    payload: { data, postId },
+  }),
+  editCommentError: error => ({
+    type: Types.EDIT_COMMENT_ERROR,
+    payload: { error },
+  }),
+  deleteCommentRequest: (commentId, postId) => ({
+    type: Types.DELETE_COMMENT_REQUEST,
+    payload: { commentId, postId },
+  }),
+  deleteCommentSuccess: (data, postId) => ({
+    type: Types.DELETE_COMMENT_SUCCESS,
+    payload: { data, postId },
+  }),
+  deleteCommentError: error => ({
+    type: Types.DELETE_COMMENT_ERROR,
     payload: { error },
   }),
 };

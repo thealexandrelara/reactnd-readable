@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Divider as UnstyledDivider } from 'antd';
 import { default as UnstyledVotes } from '../../../Votes';
+import { default as UnstyledEditComment } from '../EditComment';
 
 export const Container = styled.article`
   display: grid;
@@ -45,6 +46,13 @@ export const Stats = styled.span`
   color: darkgray;
 `;
 
+export const EditClickable = styled.span`
+  font-size: 0.7rem;
+  margin-left: 8px;
+  color: darkgray;
+  cursor: pointer;
+`;
+
 export const Message = styled.h1`
   font-size: 0.9rem;
   grid-row: 2;
@@ -54,4 +62,9 @@ export const Message = styled.h1`
 export const Divider = styled(UnstyledDivider)`
   grid-column: span 3;
   padding: 0 16px;
+`;
+
+export const EditComment = styled(UnstyledEditComment)`
+  grid-row: 2;
+  grid-column: 3;
 `;

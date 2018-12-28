@@ -6,6 +6,8 @@ const byId = (state = {}, action) => {
     case Types.RETRIEVE_SINGLE_COMMENT_SUCCESS:
     case Types.VOTE_IN_COMMENT_SUCCESS:
     case Types.ADD_COMMENT_SUCCESS:
+    case Types.EDIT_COMMENT_SUCCESS:
+    case Types.DELETE_COMMENT_SUCCESS:
       return { ...state, ...action.payload.data.entities.comments };
     default:
       return state;

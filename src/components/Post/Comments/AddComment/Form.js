@@ -3,10 +3,6 @@ import { Form, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
-function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
-
 const AddCommentForm = Form.create({
   onFieldsChange(props, changedFields) {
     props.onChange(changedFields);
@@ -23,12 +19,9 @@ const AddCommentForm = Form.create({
       }),
     };
   },
-  onValuesChange(_, values) {
-    // console.log(values);
-  },
 })(props => {
   const { onSubmit } = props;
-  const { getFieldDecorator, getFieldsError } = props.form;
+  const { getFieldDecorator } = props.form;
   return (
     <Form onSubmit={onSubmit}>
       <FormItem label="Author">

@@ -1,21 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as CommentsActions } from '../../../../store/ducks/comments';
 
-import {
-  Container,
-  Card,
-  Message,
-  HeaderContainer,
-  AuthorName,
-  Stats,
-  Votes,
-} from './styles';
+import { Container } from './styles';
 import Form from './Form';
 
 class AddComment extends React.Component {
+  static propTypes = {
+    postId: PropTypes.string.isRequired,
+    addCommentRequest: PropTypes.func.isRequired,
+  };
+
   state = {
     fields: {
       author: {

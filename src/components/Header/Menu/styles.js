@@ -20,6 +20,7 @@ export const Menu = styled(UnstyledMenu)`
     &.ant-menu-item:hover {
       border-color: white;
       border: none;
+      color: white;
       a {
         color: white;
       }

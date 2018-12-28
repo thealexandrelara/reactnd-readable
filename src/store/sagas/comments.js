@@ -77,3 +77,53 @@ export function* addComment(action) {
     // ),
   }
 }
+
+export function* editComment(action) {
+  const { body, commentId, postId } = action.payload;
+  const params = {
+    body,
+    timestamp: Date.now(),
+  };
+
+  console.log('PARAMS: ', params);
+
+  try {
+    const response = yield call(api.put, `/comments/${commentId}`, {
+      ...params,
+    });
+    console.log(normalize(response.data, comment), postId);
+
+    yield put(
+      CommentsActions.editCommentSuccess(
+        normalize(response.data, comment),
+        postId,
+      ),
+    );
+  } catch (err) {
+    yield put();
+    // CommentsActions.editCommentError(
+    //   'An error has occurred. Please, refresh the page.',
+    // ),
+  }
+}
+
+export function* deleteComment(action) {
+  const { commentId, postId } = action.payload;
+
+  try {
+    const response = yield call(api.delete, `/comments/${commentId}`);
+    console.log(normalize(response.data, comment), postId);
+
+    yield put(
+      CommentsActions.deleteCommentSuccess(
+        normalize(response.data, comment),
+        postId,
+      ),
+    );
+  } catch (err) {
+    yield put();
+    // CommentsActions.deleteCommentError(
+    //   'An error has occurred. Please, refresh the page.',
+    // ),
+  }
+}

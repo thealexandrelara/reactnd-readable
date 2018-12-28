@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Container, Select, SearchInput } from './styles';
 import { Input } from 'antd';
+import { Container, Select, SearchInput } from './styles';
 
-const Filters = ({ handleChange }) => (
+const Filters = ({ handleChange, handleSearchInputChange }) => (
   <Container>
     <Input.Group compact>
       <Select
@@ -11,22 +12,26 @@ const Filters = ({ handleChange }) => (
         style={{
           width: 120,
           color: '#8794c5',
-          marginLeft: 16
+          marginLeft: 16,
         }}
         onChange={handleChange}
       >
-        <Select.Option value="date">Date</Select.Option>
-        <Select.Option value="votes">Votes</Select.Option>
-        <Select.Option value="comments">Comments</Select.Option>
-        <Select.Option value="title">Title</Select.Option>
+        <Select.Option value="timestamp">Date</Select.Option>
+        <Select.Option value="voteScore">Votes</Select.Option>
+        <Select.Option value="commentCount">Comments</Select.Option>
       </Select>
       <SearchInput
         placeholder="input search text"
-        onSearch={value => console.log(value)}
+        onChange={handleSearchInputChange}
         style={{ width: 200 }}
       />
     </Input.Group>
   </Container>
 );
+
+Filters.propTypes = {
+  handleChange: PropTypes.func.isRequired,
+  handleSearchInputChange: PropTypes.func.isRequired,
+};
 
 export default Filters;
