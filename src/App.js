@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -21,6 +22,10 @@ import Footer from './components/Footer';
 import Routes from './routes/routes';
 
 class App extends Component {
+  static propTypes = {
+    retrieveCategoriesRequest: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     const { retrieveCategoriesRequest } = this.props;
     retrieveCategoriesRequest();
@@ -32,8 +37,6 @@ class App extends Component {
         <GlobalStyles />
         <BrowserRouter>
           <Container>
-            {/* <Sidebar /> */}
-            {/* <Header /> */}
             <HeaderContentBackground />
             <HeaderContainer>
               <Header />
@@ -50,14 +53,10 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  console.log('categories: ', state.categories.data);
-
-  return {
-    categories: state.categories.data,
-    loadingCategories: state.categories.loading,
-  };
-};
+const mapStateToProps = state => ({
+  categories: state.categories.data,
+  loadingCategories: state.categories.loading,
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(CategoriesActions, dispatch);

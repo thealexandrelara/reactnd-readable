@@ -11,6 +11,7 @@ export function* retrieveComments(action) {
 
   try {
     const response = yield call(api.get, `/posts/${postId}/comments`);
+    console.log(response.data);
     console.log(normalize(response.data, [comment]));
 
     yield put(
@@ -20,10 +21,11 @@ export function* retrieveComments(action) {
       ),
     );
   } catch (err) {
-    yield put();
-    // CommentsActions.retrieveCommentsError(
-    //   'An error has occurred. Please, refresh the page.',
-    // ),
+    yield put(
+      CommentsActions.retrieveCommentsError(
+        'An error has occurred. Please, refresh the page.',
+      ),
+    );
   }
 }
 
@@ -32,6 +34,7 @@ export function* voteInComment(action) {
 
   try {
     const response = yield call(api.post, `/comments/${commentId}`, { option });
+    console.log(response.data);
     console.log(normalize(response.data, comment));
 
     yield put(
@@ -41,10 +44,11 @@ export function* voteInComment(action) {
       ),
     );
   } catch (err) {
-    yield put();
-    // CommentsActions.voteInPostError(
-    //   'An error has occurred. Please, refresh the page.',
-    // ),
+    yield put(
+      CommentsActions.voteInCommentError(
+        'An error has occurred. Please, refresh the page.',
+      ),
+    );
   }
 }
 
@@ -71,10 +75,11 @@ export function* addComment(action) {
       ),
     );
   } catch (err) {
-    yield put();
-    // CommentsActions.voteInPostError(
-    //   'An error has occurred. Please, refresh the page.',
-    // ),
+    yield put(
+      CommentsActions.addCommentError(
+        'An error has occurred. Please, refresh the page.',
+      ),
+    );
   }
 }
 
@@ -100,10 +105,11 @@ export function* editComment(action) {
       ),
     );
   } catch (err) {
-    yield put();
-    // CommentsActions.editCommentError(
-    //   'An error has occurred. Please, refresh the page.',
-    // ),
+    yield put(
+      CommentsActions.editCommentError(
+        'An error has occurred. Please, refresh the page.',
+      ),
+    );
   }
 }
 
@@ -112,7 +118,6 @@ export function* deleteComment(action) {
 
   try {
     const response = yield call(api.delete, `/comments/${commentId}`);
-    console.log(normalize(response.data, comment), postId);
 
     yield put(
       CommentsActions.deleteCommentSuccess(
@@ -121,9 +126,10 @@ export function* deleteComment(action) {
       ),
     );
   } catch (err) {
-    yield put();
-    // CommentsActions.deleteCommentError(
-    //   'An error has occurred. Please, refresh the page.',
-    // ),
+    yield put(
+      CommentsActions.deleteCommentError(
+        'An error has occurred. Please, refresh the page.',
+      ),
+    );
   }
 }

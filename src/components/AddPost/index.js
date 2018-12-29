@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -74,7 +75,11 @@ class AddPost extends React.Component {
 
     form.validateFields((err, values) => {
       if (!err) {
-        addPostRequest(values);
+        addPostRequest({
+          ...values,
+          id: uuid.v4().replace(/-/g, ''),
+          timestamp: Date.now(),
+        });
         this.hideModal();
         form.resetFields();
       }
@@ -82,6 +87,7 @@ class AddPost extends React.Component {
   };
 
   saveFormRef = form => {
+    // Save form reference, so it's possible to validate and reset fields
     this.form = form;
   };
 

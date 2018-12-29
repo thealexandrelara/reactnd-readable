@@ -92,6 +92,7 @@ class PostDetail extends PureComponent {
 const mapStateToProps = (state, ownProps) => {
   const { match } = ownProps;
 
+  // Get single post from Redux Store
   let singlePost = Selectors.posts.getSinglePost(state, match.params.postId);
 
   if (singlePost) {

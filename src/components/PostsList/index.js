@@ -75,6 +75,7 @@ class PostsList extends PureComponent {
 }
 
 const mapStateToProps = (state, { category, sortBy, orderBy, searchTerm }) => ({
+  // Get visible posts based on filters and search terms
   posts: Selectors.posts.getVisiblePosts(
     state,
     category,

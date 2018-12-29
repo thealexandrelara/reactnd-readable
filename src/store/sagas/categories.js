@@ -12,9 +12,10 @@ export function* retrieveCategories() {
       CategoriesActions.retrieveCategoriesSuccess(response.data.categories),
     );
   } catch (err) {
-    yield put();
-    // CategoriesActions.retrievePostsError(
-    //   'An error has occurred. Please, refresh the page.',
-    // ),
+    yield put(
+      CategoriesActions.retrieveCategoriesError(
+        'An error has occurred. Please, refresh the page.',
+      ),
+    );
   }
 }

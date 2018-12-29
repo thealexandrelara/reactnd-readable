@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import _ from 'lodash';
+import uuid from 'uuid';
 import Types from './types';
 import byId, { Selectors as byIdSelectors } from './reducers/byId';
 import listsByCategory, {
@@ -16,21 +17,25 @@ export default posts;
 
 export const Selectors = {
   getVisiblePosts: (state, category, sortBy, orderBy, searchTerm) => {
+    // Get ids array
     const ids = listsByCategorySelectors.getIds(
       state.listsByCategory,
       category,
     );
 
+    // Map ids into posts
     let postsList = ids
       ? ids.map(id => byIdSelectors.getSinglePost(state.byId, id))
       : [];
 
+    // Sort and order posts
     if (sortBy && orderBy) {
       postsList = _.orderBy(postsList, [sortBy], [orderBy]);
     }
 
     postsList = postsList.filter(post => !post.deleted);
 
+    // Filter by search term
     if (searchTerm) {
       postsList = searchPosts(postsList, searchTerm);
     }
@@ -81,7 +86,9 @@ export const Creators = {
   }),
   addPostRequest: params => ({
     type: Types.ADD_POST_REQUEST,
-    payload: { ...params },
+    payload: {
+      ...params,
+    },
   }),
   addPostSuccess: (data, category) => ({
     type: Types.ADD_POST_SUCCESS,

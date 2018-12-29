@@ -27,7 +27,7 @@ export const abbreviateNumbers = (number, decPlaces) => {
       // Add the letter for the abbreviation
       numberToConvert += abbrev[i];
 
-      // We are done... stop
+      // Stop
       break;
     }
   }

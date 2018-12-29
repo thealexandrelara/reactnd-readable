@@ -10,7 +10,7 @@ export const searchPosts = (posts, searchTerm) => {
     minMatchCharLength: 1,
     keys: ['title', 'body', 'category', 'author'],
   };
-  const fuse = new Fuse(posts, options); // "list" is the item array
+  const fuse = new Fuse(posts, options);
   const result = fuse.search(searchTerm);
 
   return result;

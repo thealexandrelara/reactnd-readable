@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import UnstyledSidebar from '../components/Sidebar';
-
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr minmax(auto, 960px) 1fr;
@@ -45,8 +43,4 @@ export const FooterContainer = styled.div`
   justify-content: center;
   grid-column: 2;
   grid-row: 4;
-`;
-
-export const Sidebar = styled(UnstyledSidebar)`
-  grid-column: 1;
 `;

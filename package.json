@@ -21,6 +21,7 @@
     "redux-saga": "^0.16.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
+    "sinon": "^7.2.2",
     "styled-components": "^4.0.2",
     "uuid": "^3.3.2"
   },
@@ -40,11 +41,17 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "axios-mock-adapter": "^1.15.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.15.3"
+    "jest-canvas-mock": "^1.1.0",
+    "prettier": "^1.15.3",
+    "redux-mock-store": "^1.5.3",
+    "redux-saga-tester": "^1.0.381"
   }
 }
